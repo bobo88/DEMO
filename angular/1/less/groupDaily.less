@@ -1,0 +1,38 @@
+/* 收入总览 */
+.overview-of-income{ margin-bottom: 20px; padding: 15px 20px;background: #FFFFFF; border: 1px solid rgba(43,60,80,0.08); box-shadow: 0 2px 4px 0 rgba(0,0,0,0.06); border-radius: 4px;
+	.tit{ height: 30px; line-height: 30px; color: #344559; font-size: 14px;}
+	.income-list{ padding: 10px 0; line-height: 30px; color: #666; letter-spacing: 0.5px;
+		.theme{ color: #333; font-size: 14px;}
+		.icon{ font-size: 20px;}
+		.today-income{ border-right: 1px solid #eee;}
+		.month-income{ border-right: 1px solid #eee;}
+		.year-income{}
+	}
+}
+
+/* chart-wrap: 最近7天收入趋势 & 今日top3 & 酒店指标明细 */
+.chart-wrap{
+	.left-box{ width: 40%; height: 520px;
+		.left-box-item{ width: 100%; height: 250px; border: 1px solid rgba(43,60,80,0.08); box-shadow: 0 2px 4px 0 rgba(0,0,0,0.06); border-radius: 4px;
+			&.left-box-top{ margin-bottom: 20px;}
+		}
+	}
+	.right-box{ padding: 15px; width: 58%; height: 520px; border: 1px solid rgba(43,60,80,0.08); box-shadow: 0 2px 4px 0 rgba(0,0,0,0.06); border-radius: 4px;
+		.income-source-tit{ margin-bottom: 10px; height: 25px; line-height: 25px; font-size: 14px; color: #344559; letter-spacing: 1px;
+			a{ font-size: 12px; color: #4A90E2; letter-spacing: 0.86px;}
+		}
+		.tc{ text-align: center;}
+		.income-source-cont{ width: 100%; height: 450px; overflow: auto;
+			table{ width: 100%; border: 1px solid #eee;
+				thead{ background: #f9f9f9;
+					tr{ line-height: 30px;}
+					th{ padding: 0 10px; border-right: 1px solid #eee; text-align: center;}
+				}
+				tr{ line-height: 36px; border-bottom: 1px solid #eee;
+					td{ padding: 0 10px; min-width: 80px; border-right: 1px solid #eee; text-align: center;}
+					.left-tit{ min-width: 140px;}
+				}
+			}
+		}
+	}
+}

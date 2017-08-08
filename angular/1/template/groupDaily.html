@@ -1,0 +1,332 @@
+<!-- 主体内容 -->
+<div class="main-wrap" ng-controller="groupDailyController" id="groupDaily">
+    <h3 class="tit-cont-wrap"><span>我是头部内容</span></h3>
+    <div class="left-cont-wrap">
+        <div class="left-cont">
+           <span>我是左侧内容</span> 
+        </div>
+    </div>
+
+    <div class="main-cont-wrap">
+        <div class="main-cont-select">
+            <div class="select-time-box">
+                <input type="text" class="form-control" readonly placeholder="请选择日期" ng-click="dateConfig.showFilter($event)" ng-model="selectTime">
+                <i class="iconfont icon-rili"></i>
+            </div>
+        </div>
+
+        <!-- 中间主要内容展示区域 -->
+        <div class="overview-of-income">
+            <h3 class="tit">收入总览</h3>
+            
+            <div class="income-list">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4 today-income">
+                        <div class="row theme">
+                            <div class="col-xs-6 col-md-6">今日</div>
+                            <div class="col-xs-6 col-md-4">{{ todayIncome.incomeNum | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">同比</div>
+                            <div class="col-xs-6 col-md-4">{{ todayIncome.Yoy.val | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                <ng-state state="todayIncome.Yoy.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">环比</div>
+                            <div class="col-xs-6 col-md-4">{{ todayIncome.Mom.val }}</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                <ng-state state="todayIncome.Mom.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">预算完成率</div>
+                            <div class="col-xs-6 col-md-4">{{ todayIncome.budgetCompletionRate.val }}%</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                <ng-state state="todayIncome.budgetCompletionRate.state"></ng-state>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4 month-income">
+                        <div class="row theme">
+                            <div class="col-xs-6 col-md-6">本月累计</div>
+                            <div class="col-xs-6 col-md-4">{{ monthIncome.incomeNum | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">同比</div>
+                            <div class="col-xs-6 col-md-4">{{ monthIncome.Yoy.val | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                <ng-state state="monthIncome.Yoy.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">月度预算完成率</div>
+                            <div class="col-xs-6 col-md-4">{{ monthIncome.monthlyBudgetCompletionRate.val }}%</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                <ng-state state="monthIncome.monthlyBudgetCompletionRate.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">时间进度</div>
+                            <div class="col-xs-6 col-md-4">{{ monthIncome.timeSchedule.val }}%</div>
+                            <div class="col-xs-6 col-md-2 state">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4 year-income">
+                        <div class="row theme">
+                            <div class="col-xs-6 col-md-6">本年累计</div>
+                            <div class="col-xs-6 col-md-4">{{ yearIncome.incomeNum | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">同比</div>
+                            <div class="col-xs-6 col-md-4">{{ yearIncome.Yoy.val | currencyFormatter }}</div>
+                            <div class="col-xs-6 col-md-2 state down">
+                                <ng-state state="yearIncome.Yoy.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">年度预算完成率</div>
+                            <div class="col-xs-6 col-md-4">{{ yearIncome.annualBudgetCompletionRate.val }}%</div>
+                            <div class="col-xs-6 col-md-2 state circle warn-circle">
+                                <ng-state state="yearIncome.annualBudgetCompletionRate.state"></ng-state>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 f12">时间进度</div>
+                            <div class="col-xs-6 col-md-4">{{ yearIncome.timeSchedule.val }}%</div>
+                            <div class="col-xs-6 col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="chart-wrap clearfix">
+            <div class="left-box fl">
+                <!-- 最近7天收入趋势 -->
+                <div class="left-box-item left-box-top" id="last7Days"></div>
+
+                <!-- 今日top3 -->
+                <div class="left-box-item left-box-bottom" id="todayTop3"></div>
+            </div>
+
+            <div class="right-box fr">
+                <h4 class="income-source-tit clearfix">酒店收入分布 <a href="#" class="fr">查看其他指标</a></h4>
+
+                <div class="income-source-cont">
+                    <table cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">经营分类</th>
+                                <th colspan="4" class="tc">当日</th>
+                                <th colspan="4" class="tc">本月累计</th>
+                                <th colspan="4" class="tc">本年累计</th>
+                            </tr>
+                            <tr>
+                                <th>实际</th>
+                                <th>日预算</th>
+                                <th>完成率</th>
+                                <th>同比</th>
+
+                                <th>实际</th>
+                                <th>日预算</th>
+                                <th>完成率</th>
+                                <th>同比</th>
+
+                                <th>实际</th>
+                                <th>日预算</th>
+                                <th>完成率</th>
+                                <th>同比</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                            <tr>
+                                <td class="left-tit">内部管理酒店</td>
+                                <td>111</td>
+                                <td>222</td>
+                                <td>333</td>
+                                <td>444</td>
+
+                                <td>555</td>
+                                <td>666</td>
+                                <td>777</td>
+                                <td>888</td>
+
+                                <td>999</td>
+                                <td>000</td>
+                                <td>222</td>
+                                <td>333</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <iframe src="http://finance.sina.com.cn/realstock/company/sz000585/nc.shtml?from=BaiduAladin" width="500" height="500" frameborder="0"></iframe> -->
+        
+    </div>
+    <!-- .main-cont-wrap -->
+</div>
+<!-- .main-wrap
