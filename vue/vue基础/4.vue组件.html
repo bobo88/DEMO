@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4.vue组件</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app">
+			<p class="tit">全局组件：</p>
+			
+			<global-component :text-color="'#28AF59'"></global-component>
+
+			<global-component :text-color="'#FF5F09'"></global-component>
+
+			<global-component :text-color="'#1ab5e3'"></global-component>
+
+
+			<p class="tit">局部组件：</p>
+			<app-child-component :num="0"></app-child-component>
+			<app-child-component :num="1"></app-child-component>
+			<app-child-component :num="2"></app-child-component>
+
+			<p class="tit">动态组件：</p>
+
+
+			<p class="tit">异步组件：</p>
+		</div>
+		
+		<!-- 全局组件，在别的vue实例里面也可以调用 -->
+		<div id="app2">
+			<global-component :text-color="'#006699'"></global-component>
+
+			<!-- app的局部组件，在这里调用会报错 -->
+			<!-- <app-child-component :num="2"></app-child-component> -->
+		</div>
+	</div><!-- .wrap -->
+
+	
+	<script>
+		Vue.component('global-component', {
+			props: ['textColor'],
+			template: '<p :style="{color: textColor}">我是全局组件，颜色根据调用不同而不同</p>'
+		});
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				msg: 'Hello Vue'
+			},
+			components: {
+				'app-child-component': {
+					props: ['num'],
+					template: '<p>{{ num }}、我是APP的子组件，我在APP之外是不能被调用的</p>'
+				}
+			}
+		});
+
+		var app2 = new Vue({
+			el: '#app2'
+		});
+	</script>
+</body>
+</html>
