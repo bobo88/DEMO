@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3.vue实例的生命周期</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app">
+			<p class="tit">Vue实例的生命周期：</p>
+			<ul>
+				<li v-for="(item, index) in lifeCircle">{{ index }} --->  {{ item }}</li>
+			</ul>
+
+			<a href="javascript:;" @click="destroyedFun" class="btn">点我注销Vue实例</a>
+
+			<ul class="circle-vue">
+				
+			</ul>
+		</div>
+	</div><!-- .wrap -->
+
+	
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				lifeCircle: []
+			},
+			methods: {
+				destroyedFun: function(){
+					app.$destroy();
+					
+					//将注销vue实例后的生命周期打印出来
+					var ulTag = document.querySelector('.circle-vue');
+					for (var i = 0, len = this.lifeCircle.length; i < len; i++) {
+						var liTag = document.createElement('li');
+						var liTagTextNode = document.createTextNode(this.lifeCircle[i]);
+						liTag.appendChild(liTagTextNode);
+						ulTag.appendChild(liTag);
+					}
+				}
+			},
+			beforeCreate: function(){
+				console.log('1: --> beforeCreate methods');
+				//注意： beforeCreate的时候，还不能调用vue实例的data数据
+				// this.lifeCircle.push('beforeCreate methods');
+			},
+			created: function(){
+				console.log('2: --> created methods');
+				this.lifeCircle.push('created methods');
+			},
+			beforeMount: function(){
+				console.log('3: --> beforeMount methods');
+				this.lifeCircle.push('beforeMount methods');
+			},
+			mounted: function(){
+				console.log('4: --> mounted methods');
+				this.lifeCircle.push('mounted methods');
+			},
+	        beforeDestroy : function(){
+	        	console.log('5: --> beforeDestroy methods');
+				this.lifeCircle.push('beforeDestroy methods');
+	        },
+	        destroyed : function(){
+	        	console.log('6: --> destroyed methods');
+				this.lifeCircle.push('destroyed methods');
+	        }
+		});
+	</script>
+</body>
+</html>

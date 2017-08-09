@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1.vue条件与循环</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+
+		<!-- 条件： if & show -->
+		<div id="app3">
+			<p v-if="ifState">你能看到我 - if！</p>
+			<p v-show="showState">你能看到我 - show！</p>
+		</div>
+
+		<!-- 循环： for -->
+		<div id="app4">
+			<p class="tips">我们用 v-for 指令根据一组数组的选项列表进行渲染。 v-for 指令需要以 item in items 形式的特殊语法， items 是源数据数组并且 item 是数组元素迭代的别名。</p>
+			<p class="tit">循环数组：</p>
+			<ul>
+				<li v-for="item in todosArr">{{ item }}</li>
+				<li v-for="(item,index) in todosArr">{{ index }} ---> {{ item }}</li>
+			</ul>
+			<p class="danger">在 v-for 块中，我们拥有对父作用域属性的完全访问权限。 v-for 还支持一个可选的第二个参数为当前项的索引（在源数据为数组或者对象时）。</p>
+
+			<p class="tit">循环对象：</p>
+			<ul>
+				<li v-for="item in personObj">{{ item }}</li>
+				<li v-for="(item, key, index) in personObj">{{ index }} ---> {{ key }} ---> {{ item }}</li>
+			</ul>
+			<p class="danger">在 v-for 块中，如果源数据是对象的话，可以传三个参数，第一个依然是对象属性(或者方法)迭代的别名，提供第二个的参数为键名，第三个参数为当前属性(或者方法)的索引。</p>
+			<a href="javascript:;" class="btn" @click="personObj.methodsFun">点击我试试</a>
+			<a href="javascript:;" class="btn" @click="add">点击我给数组添加内容</a>
+
+			<p class="tit">其他：</p>
+			<p class="tips">1、可以使用 of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法： 如 &lt;div v-for="item of items"&gt;&lt;/div&gt;</p>
+			<p class="tips">2、2.2.0+ 的版本里，当在组件中使用 v-for 时，key 现在是必须的。</p>
+		</div>
+	</div><!-- .wrap -->
+
+	<script>
+		//条件
+		var vm3 = new Vue({
+			el:'#app3',
+			data:{
+				ifState: false,
+				showState: true
+			}
+		});
+
+		//循环
+		var vm4 = new Vue({
+			el: '#app4',
+			data:{
+				todosArr: ['learn js', 'learn node', 'learn css'],
+				personObj: {
+					'addr': '北京',
+					'age': 28,
+					'phone': 18888888888,
+					'email': 'yuanboi88@163.com',
+					'methodsFun': function(){
+						alert('我是对象里面的方法');
+					}
+				}
+			},
+			methods: {
+				add: function(){
+					this.todosArr.push('learn Nodejs');
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2.列表渲染之数组变动注意事项</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app5">
+			<p class="danger">
+				由于 JavaScript 的限制， Vue 不能检测以下变动的数组：<br/>
+				1、当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue<br/>
+				2、当你修改数组的长度时，例如： vm.items.length = newLength
+			</p>
+			<p class="tit">循环数组：</p>
+			<ul>
+				<li v-for="item in todosArr">{{ item }}</li>
+				<li v-for="(item,index) in todosArr">{{ index }} ---> {{ item }}</li>
+			</ul>
+			<a href="javascript:;" class="btn" @click="changeArr">点击我改变数组第一个元素的内容</a>
+			<p class="danger">你会发现点击上面的按钮并不能改变数组第一个元素内容</p>
+			<a href="javascript:;" class="btn" @click="changeArr2">点用Vue.set方法试试</a>
+			<a href="javascript:;" class="btn" @click="changeArr3">点用splice方法试试</a>
+			<p class="tips">解决第二类问题的方法也是用splice。</p>
+		</div>
+
+	</div><!-- .wrap -->
+
+	
+	<script>
+		var vm5 = new Vue({
+			el: '#app5',
+			data:{
+				todosArr: ['learn js', 'learn node', 'learn css']
+			},
+			methods: {
+				changeArr: function(){
+					this.todosArr[0] = 'learn Nodejs';
+				},
+				changeArr2: function(){
+					Vue.set(this.todosArr, 0, 'learn Vue.set');
+				},
+				changeArr3: function(){
+					this.todosArr.splice(0, 1, 'learn Splice');
+				}
+			}
+		});
+	</script>
+</body>
+</html>
