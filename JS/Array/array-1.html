@@ -6,5 +6,112 @@
 </head>
 <body>
 	
+	<p>本DEMO主要演示数组去重的四种常见方法，具体代码请查看页面源代码。</p>
+
+	
+	<script>
+		window.onload = function(){
+			var arr = [1,2,3,5,3,2,5,6,7,4,3];
+			console.log('-----原始数组：------');
+			console.log(arr);
+
+			//methods 1
+			//思路：定义一个新数组，并存放原数组的第一个元素，然后将元素组一一和新数组的元素对比，若不同则存放在新数组中。
+			function unique(arr){
+				var res = [arr[0]];
+				for(var i=1; i<arr.length; i++){
+					var repeat = false;
+					for(var j=0; j<res.length; j++){
+						if(arr[i] === res[j]){
+							repeat = true;
+							break;
+						}
+					}
+
+					if(!repeat){
+						res.push(arr[i]);
+					}
+				}
+				return res;
+			}
+			console.log('------------方法一---------------');
+			console.log(unique(arr));
+
+			//methods 2
+			//思路：先将原数组排序，在与相邻的进行比较，如果不同则存入新数组
+			function unique2(arr){
+				var arr2 = arr.sort();
+				var res = [arr2[0]];
+				for(var i=1; i<arr2.length; i++){
+					if(arr2[i] !== res[res.length-1]){
+						res.push(arr2[i]);
+					}
+				}
+
+				return res;
+			}
+			console.log('------------方法二---------------');
+			console.log(unique2(arr));
+
+			//methods 3
+			//思路：先将原数组排序，在与相邻的进行比较，如果不同则存入新数组
+			function unique3(arr){
+				var res = [];
+				var obj = {};
+				for(var i=0; i<arr.length; i++){
+					if( !obj[arr[i]] ){
+						obj[arr[i]] = 1;
+						res.push(arr[i]);
+					}
+				}
+
+				return res;
+			}
+			console.log('------------方法三---------------');
+			console.log(unique3(arr));
+
+			//methods 4
+			//思路：利用数组的indexOf下标属性来查询
+			function unique4(arr){
+				var res = [];
+				for(var i=0; i<arr.length; i++){
+					if(res.indexOf(arr[i]) == -1){
+						res.push(arr[i]);
+					}
+				}
+
+				return res;
+			}
+			console.log('------------方法四---------------');
+			console.log(unique4(arr));
+
+			// //methods 5
+			// //思路：利用数组原型对象上的find方法
+			// function unique5(arr){
+			// 	var res = [arr[0]];
+			// 	arr.splice(0,1);
+
+			// 	//callback 被调用了三个参数：元素的值，元素的索引和被遍历的Array对象。
+			// 	function isFind(element){
+			// 		return element === res[res.length-1];
+			// 	}
+
+			// 	console.log('----------');
+			// 	for(var i=0; i<arr.length; i++){
+			// 		if( arr.find(isFind) === undefined ){
+			// 			res.push(arr[i]);
+			// 			arr.splice(0,1);
+			// 		}
+			// 	}
+			// 	console.log('----------');
+
+			// 	return res;
+			// }
+			// console.log('------------方法五---------------');
+			// console.log(unique5(arr));
+		};
+	</script>
+
+
 </body>
 </html>
