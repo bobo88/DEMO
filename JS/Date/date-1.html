@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date对象的一些常用方法</title>
+</head>
+<body>
+
+
+	<p>=============Date 对象用于处理日期和时间====================</p>
+	<p>Date() 返回当日的日期和时间 ---> <span id="span1"></span></p>
+	<p>getDate() 从 Date 对象返回一个月中的某一天 (1 ~ 31) ---> <span id="span2"></span></p>
+	<p>getDay() 从 Date 对象返回一周中的某一天 (0 ~ 6) ---> <span id="span3"></span></p>
+	<p>getMonth() 从 Date 对象返回月份 (0 ~ 11) ---> <span id="span4"></span></p>
+	<p>getFullYear() 从 Date 对象以四位数字返回年份 ---> <span id="span5"></span></p>
+	<p>getHours() 返回 Date 对象的小时 (0 ~ 23) ---> <span id="span6"></span></p>
+	<p>getMinutes() 返回 Date 对象的分钟 (0 ~ 59) ---> <span id="span7"></span></p>
+	<p>getSeconds() 返回 Date 对象的秒数 (0 ~ 59) ---> <span id="span8"></span></p>
+	<p>getMilliseconds() 返回 Date 对象的毫秒(0 ~ 999) ---> <span id="span9"></span></p>
+	<p>getTime() 返回 1970 年 1 月 1 日至今的毫秒数 ---> <span id="span10"></span></p>
+	<br/>
+
+	<p>setDate() 设置 Date 对象中月的某一天 (1 ~ 31) ---> <span id="span11"></span> (设置为本月12)</p>
+	<p>setMonth() 设置 Date 对象中月份 (0 ~ 11) ---> <span id="span12"></span> (设置为10月)</p>
+	<p>setFullYear() 设置 Date 对象中的年份（四位数字） ---> <span id="span13"></span>  (设置为2015年)</p>
+	<p>setHours() 设置 Date 对象中的小时 (0 ~ 23) ---> <span id="span14"></span> (设置为早上6点)</p>
+	<p>setMinutes() 设置 Date 对象中的分钟 (0 ~ 59)</p>
+	<p>setSeconds() 设置 Date 对象中的秒钟 (0 ~ 59)</p>
+	<p>setMilliseconds() 设置 Date 对象中的毫秒 (0 ~ 999)</p>
+	<p>setTime() 以毫秒设置 Date 对象 ---> <span id="span15"></span> </p>
+	<br/>
+	<p>toString() 把 Date 对象转换为字符串</p>
+	<p>toTimeString() 把 Date 对象的时间部分转换为字符串</p>
+	<p>toDateString() 把 Date 对象的日期部分转换为字符串</p>
+	<p>toLocaleString() 根据本地时间格式，把 Date 对象转换为字符串</p>
+
+	<p>valueOf() 返回 Date 对象的原始值 ---> <span id="span16"></span> </p>
+	<p>toJSON()取得JSON格式的日期字串 ---> <span id="span17"></span> </p>
+
+	<script>
+		var doc = document;
+		doc.querySelector('#span1').innerHTML = new Date();
+		doc.querySelector('#span2').innerHTML = new Date().getDate();
+		doc.querySelector('#span3').innerHTML = new Date().getDay();
+		doc.querySelector('#span4').innerHTML = new Date().getMonth();
+		doc.querySelector('#span5').innerHTML = new Date().getFullYear();
+		doc.querySelector('#span6').innerHTML = new Date().getHours();
+		doc.querySelector('#span7').innerHTML = new Date().getMinutes();
+		doc.querySelector('#span8').innerHTML = new Date().getSeconds();
+		doc.querySelector('#span9').innerHTML = new Date().getMilliseconds();
+		doc.querySelector('#span10').innerHTML = new Date().getTime();
+
+		//设置某一天
+		var d = new Date();
+		d.setDate(12);
+		doc.querySelector('#span11').innerHTML = d.toLocaleDateString();
+
+		//设置某一月
+		var d2 = new Date();
+		d2.setMonth(9);
+		doc.querySelector('#span12').innerHTML = d2.toLocaleDateString();
+
+		//设置某一年
+		var d3 = new Date();
+		d3.setFullYear(2015);
+		doc.querySelector('#span13').innerHTML = d3.toLocaleDateString();
+
+		//设置某一个小时
+		var d4 = new Date();
+		d4.setHours(5);
+		doc.querySelector('#span14').innerHTML = d4.getHours();
+
+		//以毫秒设置 Date 对象
+		var d5 = new Date();
+		d5.setTime(1502450640960);
+		doc.querySelector('#span15').innerHTML = d5.toLocaleString();
+
+		//valueOf
+		var d6 = new Date();
+		doc.querySelector('#span16').innerHTML = d6.valueOf();
+
+		//toJSON
+		var d7 = new Date();
+		doc.querySelector('#span17').innerHTML = d7.toJSON();
+	</script>
+</body>
+</html>
