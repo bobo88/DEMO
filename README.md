@@ -8,7 +8,7 @@
 	<li>
 		<h5><a href="https://github.com/bobo88/DEMO/tree/master/angular">angular系列</a></h5>
 		<ul>
-			<li><a href="https://github.com/bobo88/DEMO/tree/master/angular/1"></a></li>
+			<li><a href="https://github.com/bobo88/DEMO/tree/master/angular/1">项目portal系统</a></li>
 		</ul>
 	</li>
 	<li>
