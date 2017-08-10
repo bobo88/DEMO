@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6.vue样式绑定</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app">
+			<p class="tit">Class 与 Style 绑定</p>
+			<p class="tips">我们可以用v-bind来处理Class和Style，只要计算出表达式的最终字符串即可。表达式的结果类型除了字符串以外，还可以是对象和数组。</p>
+			<p :style="{color: colorStyle, fontSize: fontSizeStyle}">查看源码，看我的样式---->我用的是对象</p>
+			<p :style="obj">顺便看看我的样式----->我用的还是对象</p>
+			<p :style="{color: colorState}">是你上爱是给你</p>
+			<p :class="[dangerState, {btn: isBtn}]">也看看我的样式----->我用的是数组</p>
+		</div>
+	</div><!-- .wrap -->
+
+	
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				colorStyle: '#069',
+				fontSizeStyle: '20px',
+				dangerState: 'danger',
+				colorState: '#709',
+				isBtn: true,
+				obj: {
+					color: '#f60',
+					fontSize: '30px'
+				}
+			}
+		});
+	</script>
+</body>
+</html>
