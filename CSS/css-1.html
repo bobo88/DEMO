@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>如何让一个元素水平垂直居中？</title>
+	<style>
+		.div1{ position: absolute; z-index: 1; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 200px; height: 200px; border: 3px solid #069; text-align: center;}
+		.div2{ position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: auto; width: 300px; height: 300px; border: 3px solid #f60; text-align: center;}
+		.div3{  position: absolute; z-index: 1; top: 50%; left: 50%; margin-top: -203px; margin-left: -203px; width: 400px; height: 400px; border: 3px solid #000; text-align: center; }
+		div span{ display: inline-block; position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%,-50%);}
+	</style>
+</head>
+<body>
+	<p>div1：使用绝对定位，top: 50%; left: 50%; transform: translate(-50%,-50%);</p>
+	<p>div2：使用绝对定位，top: 0; left: 0; right: 0; bottom: 0; margin: auto; 其width、height如何更改都是居中显示的。</p>
+	<p>div3：使用绝对定位，top: 50%; left: 50%; margin-top: -203px; margin-left: -203px; width: 400px; height: 400px; border: 3px solid #000;</p>
+	<p>小技巧： 如果你想A元素嵌套在任何B元素(该B元素可能设置了相对定位或者绝对定位)下面，可以对A元素设置为fixed样式，这样就可以一直水平垂直居中于浏览器。</p>
+	
+
+	<div class="div1"><span style="color:#069;">div1，用样式让我水平垂直居中吧</span></div>
+
+	<div class="div2"><span style="color:#f60;">div2，哈哈哈哈哈哈哈哈</span></div>
+
+	<div class="div3"><span style="color:#000;">我是div3</span></div>
+
+	
+</body>
+</html>
