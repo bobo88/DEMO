@@ -39,9 +39,9 @@
 				</ul>
 			</li>
 			<li>
-				<h6><a href="">---Array---</a></h6>
+				<h6><a href="https://github.com/bobo88/DEMO/tree/master/JS/Array">---Array---</a></h6>
 				<ul>
-					<li><a href="">[Array——基础篇]数组去重</a></li>
+					<li><a href="https://github.com/bobo88/DEMO/blob/master/JS/Array/array-1.html">[Array——基础篇]数组去重</a></li>
 				</ul>
 			</li>
 			<li>
