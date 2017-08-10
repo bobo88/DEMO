@@ -30,7 +30,7 @@
 		</ul>
 	</li>
 	<li>
-		<h5><a href="javascript:;">原生js技巧系列</a></h5>
+		<h5><a href="https://github.com/bobo88/DEMO/tree/master/JS">原生js技巧系列</a></h5>
 		<ul>
 			<li>
 				<h6><a href="">---Object---</a></h6>
@@ -45,9 +45,9 @@
 				</ul>
 			</li>
 			<li>
-				<h6><a href="">---Date---</a></h6>
+				<h6><a href="https://github.com/bobo88/DEMO/tree/master/JS/Date">---Date---</a></h6>
 				<ul>
-					<li><a href="">[Date——基础篇]Date对象常用方法总结</a></li>
+					<li><a href="https://github.com/bobo88/DEMO/blob/master/JS/Date/date-1.html">[Date——基础篇]Date对象常用方法总结</a></li>
 				</ul>
 			</li>
 		</ul>
