@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5.vue组件中slot分发</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app">
+			<com-slot></com-slot>
+
+			<com-slot>
+				<p slot="content">我是中间的内容哦</p>
+				
+				<!-- 这部分内容如果存在，com-slot组件内的不具名slot里面的内容就不显示，否则会显示 -->
+				<p>我是其他的内容，看我能不能显示吧</p>
+				<p>再来点</p>
+				<p>哈哈哈哈哈哈</p>
+			</com-slot>
+
+
+
+			<com-slot>
+				<p slot="content">我是中间的内容哦</p>
+				<p slot="test">我是slot名称为test的内容---------------</p>
+			</com-slot>
+
+		</div>
+	</div><!-- .wrap -->
+
+	
+	<script>
+		Vue.component('com-slot', {
+			template: [
+				'<div>',
+					'<p class="tit">我是自定义的组件的头部</p>',
+					'<p><slot name="content"></slot></p>',
+					'<p><slot name="test"></slot></p>',
+					'<p><slot>我是组件里面的不具名slot内容</slot></p>',
+					'<p>我是底部</p>',
+				'</div>'
+			].join('')
+		});
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+				
+			}
+		});
+	</script>
+</body>
+</html>
