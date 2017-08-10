@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>4.vue组件</title>
 	<script src="../lib/vue-2.1.7.js"></script>
+	<script src="../lib/axios.min.js"></script>
 	<style>
 		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
 		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
@@ -35,13 +36,31 @@
 			<app-child-component :num="2"></app-child-component>
 
 			<p class="tit">动态组件：</p>
+			<div>
+				<keep-alive>
+					<component :is="currentComponent"></component>
+				</keep-alive>
+				<a href="javascript:;" class="btn" @click="showComponent(1);">显示动态组件1</a>
+				<a href="javascript:;" class="btn" @click="showComponent(2);">显示动态组件2</a>
+				<a href="javascript:;" class="btn" @click="showComponent(3);">显示动态组件3</a>
+			</div>
 
 
 			<p class="tit">异步组件：</p>
+			<p class="danger">(注意这里需要在本地搭建服务器才能跑成功demo)</p>
+			<async-com></async-com>
+
+			<p class="tit">非父子组件通信</p>
+			<p class="tips">在简单的场景下，可以使用一个空的 Vue 实例作为中央事件总线；在复杂的情况下，我们应该考虑使用专门的状态管理模式（VueX）.</p>
+			<div>
+				<com-a></com-a>
+				<com-b></com-b>
+			</div>
 		</div>
 		
 		<!-- 全局组件，在别的vue实例里面也可以调用 -->
 		<div id="app2">
+			<p class="tit">在另一个vue实例里面，可以调用全局组件：</p>
 			<global-component :text-color="'#006699'"></global-component>
 
 			<!-- app的局部组件，在这里调用会报错 -->
@@ -51,20 +70,82 @@
 
 	
 	<script>
+		//全局组件
 		Vue.component('global-component', {
 			props: ['textColor'],
 			template: '<p :style="{color: textColor}">我是全局组件，颜色根据调用不同而不同</p>'
 		});
 
+		//异步组件（也是全局组件）
+		Vue.component('async-com', function ( resolve, reject ) {
+		 	axios.get('async.json')
+		 		.then(function(response){
+	 				resolve({
+	 			  		template: '<div>'+ response.data.data.msg +'</div>'
+	 				});
+		 		})
+		 		.catch(function(response){
+		 			// reject('加载失败');
+		 			console.log(response);
+		 		});
+		});
+
+		//一个空的Vue实例
+		var bus = new Vue();
+		
 		var app = new Vue({
 			el: '#app',
 			data: {
-				msg: 'Hello Vue'
+				msg: 'Hello Vue',
+				currentComponent: 'component1'
 			},
 			components: {
 				'app-child-component': {
 					props: ['num'],
 					template: '<p>{{ num }}、我是APP的子组件，我在APP之外是不能被调用的</p>'
+				},
+				'component1': {
+					template: '<p>我是动态组件1111</p>'
+				},
+				'component2': {
+					template: '<p>我是动态组件2222</p>'
+				},
+				'component3': {
+					template: '<p>我是动态组件3333</p>'
+				},
+				'com-a': {
+					template: '<p>我是组件A</p>',
+					mounted: function(){
+						bus.$on('funA', function(msg){
+							alert(msg);
+						});
+					}
+				},
+				'com-b': {
+					template: '<p>我是组件B <a href="javascript:;" class="btn" @click="showAMethods">点我调用组件A中的方法</a></p>',
+					methods: {
+						showAMethods: function(){
+							bus.$emit('funA', '我在组件B中调用组件A的方法');
+						}
+					}
+				}
+			},
+			methods: {
+				showComponent: function(id){
+					switch(id){
+						case 1:
+							this.currentComponent = 'component1';
+							break;
+						case 2:
+							this.currentComponent = 'component2';
+							break;
+						case 3:
+							this.currentComponent = 'component3';
+							break;
+						default:
+							this.currentComponent = 'component1';
+							break;
+					}
 				}
 			}
 		});
