@@ -64,6 +64,12 @@
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/CSS/css-1.html">[CSS——基础篇]如何让一个元素水平垂直居中？</a></li>
 		</ul>
 	</li>
+	<li>
+		<h5><a href="https://github.com/bobo88/DEMO/tree/master/mindMapping">思维导图系列</a></h5>
+		<ul>
+			<li>[思维导图——正则表达式]正则表达式总览</li>
+		</ul>
+	</li>
 </ul>
 
 <p>个人博客网站 [@园博吧](http://www.yuanbo88.com)</p>
