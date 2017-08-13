@@ -21,6 +21,7 @@
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/4.vue.html">[vue——基础篇]vue组件</a></li>
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/5.vue.html">[vue——基础篇]vue组件中slot分发</a></li>
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/6.vue.html">[vue——基础篇]vue样式绑定</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/7.vue.html">[vue——基础篇]vuex测试</a></li>
 		</ul>
 	</li>
 	<li>
