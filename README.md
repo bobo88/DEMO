@@ -11,7 +11,21 @@
 			<li><a href="https://github.com/bobo88/DEMO/tree/master/angular/1">项目portal系统</a></li>
 		</ul>
 	</li>
-
+	<li>
+		<h5><a href="https://github.com/bobo88/DEMO/tree/master/vue/vueBasic">vue系列</a></h5>
+		<ul>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/0.vue.html">[vue——基础篇]声明式渲染</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/1.vue.html">[vue——基础篇]条件与循环</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/2.vue.html">[vue——基础篇]列表渲染之数组变动注意事项</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/3.vue.html">[vue——基础篇]vue实例的生命周期</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/4.vue.html">[vue——基础篇]vue组件</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/5.vue.html">[vue——基础篇]vue组件中slot分发</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/6.vue.html">[vue——基础篇]vue样式绑定</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/7.vue.html">[vue——基础篇]vuex测试</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vuePromote/1.vue.html">[vue——提升篇]用vue来实现图片上传功能</a></li>
+		</ul>
+	</li>
+	
 </ul>
 
 <p>个人博客网站 [@园博吧](http://www.yuanbo88.com)</p>
