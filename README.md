@@ -24,7 +24,6 @@
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/7.vue.html">[vue——基础篇]vuex测试</a></li>
 
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vuePromote/1.vue.html">[vue——提升篇]用vue来实现图片上传功能</a></li>
-
 		</ul>
 	</li>
 	<li>
