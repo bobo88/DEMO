@@ -72,6 +72,12 @@
 			<li>[思维导图——正则表达式]正则表达式总览</li>
 		</ul>
 	</li>
+	<li>
+		<h5><a href="https://github.com/bobo88/DEMO/tree/master/nodejs">NodeJS系列</a></h5>
+		<ul>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/nodejs/httpServer.js">[Node——基础篇]创建一个最简单的HTTP服务器</a></li>
+		</ul>
+	</li>
 </ul>
 
 <p>个人博客网站 [@园博吧](http://www.yuanbo88.com)</p>
