@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用vue来实现图片上传功能</title>
+	<script src="../lib/vue-2.1.7.js"></script>
+	<style>
+		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
+		.logo{ position: absolute; z-index: 2; top: 20px; left: -10px;}
+		.tips{ color: #28AF59;}
+		.danger{ color: #FF5F09;}
+		.tit{ padding-left: 10px; height: 25px; line-height: 25px; color: #fff; background: #1ab5e3;}
+		.btn{ display: inline-block; padding: 0 10px; height: 30px; line-height: 30px; color: #000; border: 1px solid #1ab5e3; border-radius: 5px; text-decoration: none;} 
+		.btn:hover{ color: #fff; background: #1ab5e3;}
+
+		.file-btn{ display: inline-block; margin-bottom: 0; margin-top: 5px; height: 30px; line-height: 30px; font-weight: 400; text-align: center; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; background-image: none; border: 1px solid transparent; white-space: nowrap; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; padding: 4px 15px; font-size: 12px; border-radius: 4px; transition: color .2s linear,background-color .2s linear,border .2s linear; color: #495060; border-color: #dddee1; color: #8598CB; border-color: #8598CB; font-size: 14px;}
+		.file-btn:hover{ color: #fff; background-image: linear-gradient(90deg, #6F64FF 0%, #B93BFB 100%);}
+		
+	</style>
+</head>
+<body>
+	
+	<div class="wrap">
+		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
+		
+		<div id="app">
+				<div v-if="!image">
+				  	<input id="fileId" type="file" name="file" style="display:none;" @change="onFileChange" />
+				  	<label for="fileId"><span class="file-btn">本地上传</span></label>
+				</div>
+
+				<div v-else>
+					<img :src="image" />
+					<button @click="removeImage">Remove image</button>
+				</div>
+		</div>
+	</div><!-- .wrap -->
+
+	
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				image: ''
+			},
+			methods: {
+				onFileChange(e) {
+					var files = e.target.files || e.dataTransfer.files;
+					if (!files.length) return;
+					this.createImage(files[0]);
+				},
+				createImage(file) {
+					var image = new Image();
+					var reader = new FileReader();
+					var vm = this;
+
+					reader.onload = (e) => {
+						vm.image = e.target.result;
+					};
+					reader.readAsDataURL(file);
+				},
+				removeImage: function (e) {
+					this.image = '';
+				}
+			}
+		});
+	</script>
+</body>
+</html>
