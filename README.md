@@ -22,6 +22,7 @@
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/5.vue.html">[vue——基础篇]vue组件中slot分发</a></li>
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/6.vue.html">[vue——基础篇]vue样式绑定</a></li>
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/7.vue.html">[vue——基础篇]vuex测试</a></li>
+			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vueBasic/8.vue.html">[vue——基础篇]vue父子组件如何通信</a></li>
 			<li><a href="https://github.com/bobo88/DEMO/blob/master/vue/vuePromote/1.vue.html">[vue——提升篇]用vue来实现图片上传功能</a></li>
 		</ul>
 	</li>

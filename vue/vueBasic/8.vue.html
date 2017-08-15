@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>vue父子组件如何通信</title>
 	<script src="../lib/vue-2.1.7.js"></script>
 	<style>
 		.wrap{ position: relative; z-index: 1; margin: 0 auto; padding: 20px 0 0 100px; width: 1000px;}
@@ -20,16 +20,41 @@
 		<p class="logo"><img src="../logo.png" width="100" alt=""></p>
 		
 		<div id="app">
-			
+			<!-- 子组件通过props属性声明自己想要从父组件得到的数据，props里面声明的变量可以和组件的data属性一样直接使用 -->
+			<child :from-parent="msg" @show-from-child="showMsgFromChild"></child>
 		</div>
 	</div><!-- .wrap -->
 
 	
 	<script>
+		var child = {
+			props: ['fromParent'],
+			template: '<div> {{ msg }}  <p>{{ fromParent }}</p> <a href="javascript:;" class="btn" @click="showMsg">我是子组件按钮，点我</a></div>',
+			data: function(){
+				return {
+					msg: '我来自子组件'
+				}
+			},
+			methods: {
+				showMsg: function(){
+					alert(this.msg);
+					this.$emit('show-from-child', this.msg);
+				}
+			}
+		};
+
 		var app = new Vue({
 			el: '#app',
 			data: {
-				
+				msg: '我是来自父组件的msg'
+			},
+			components: {
+				'child': child
+			},
+			methods: {
+				showMsgFromChild: function(data){
+					alert('我是父组件里面的方法，获取从子组件传过来的数据：' + data);
+				}
 			}
 		});
 	</script>
