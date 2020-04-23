@@ -87,6 +87,5 @@
 	</li>
 </ul>
 
-<p>个人博客网站 [@园博吧](http://www.yuanbo88.com)</p>
 
 
